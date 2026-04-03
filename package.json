@@ -1,0 +1,112 @@
+{
+  "name": "vscode-folder-commands",
+  "displayName": "Folder Commands",
+  "description": "Run pre-defined commands from your workspace folders via the explorer context menu",
+  "version": "0.1.0",
+  "publisher": "zirkelc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zirkelc/vscode-folder-commands.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Chris Cook",
+    "url": "https://zirkelc.dev"
+  },
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "folderCommands.runCommand",
+        "category": "Folder Commands",
+        "title": "Run Command..."
+      },
+      {
+        "command": "folderCommands.addCommand",
+        "category": "Folder Commands",
+        "title": "Add Command..."
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "folderCommands.runCommand",
+          "when": "explorerResourceIsFolder",
+          "group": "folderCommands@1"
+        },
+        {
+          "command": "folderCommands.addCommand",
+          "when": "explorerResourceIsFolder",
+          "group": "folderCommands@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "folderCommands.runCommand",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      }
+    ],
+    "configuration": {
+      "title": "Folder Commands",
+      "properties": {
+        "folderCommands.commands": {
+          "type": "array",
+          "default": [],
+          "description": "List of commands to run from specific folders",
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "command",
+              "folder"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Display label for the command"
+              },
+              "command": {
+                "type": "string",
+                "description": "Shell command to execute"
+              },
+              "folder": {
+                "type": "string",
+                "description": "Target folder relative to workspace root (e.g. 'packages/foo')"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "npm run check-types && node esbuild.js",
+    "check-types": "tsc --noEmit",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "lint": "biome check . --write",
+    "prepackage": "pnpm run compile -- --production",
+    "package": "pnpm vsce package"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.5",
+    "@types/node": "~24.10.1",
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.7.0",
+    "esbuild": "^0.27.0",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.18.2",
+  "vsce": {
+    "dependencies": false
+  }
+}
