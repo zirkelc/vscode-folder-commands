@@ -39,7 +39,7 @@
       "explorer/context": [
         {
           "command": "folderCommands.runCommand",
-          "when": "explorerResourceIsFolder",
+          "when": "explorerResourceIsFolder && folderCommands.hasCommands",
           "group": "folderCommands@1"
         },
         {
@@ -96,7 +96,12 @@
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
     "lint": "biome check . --write",
     "prepackage": "pnpm run compile -- --production",
-    "package": "pnpm vsce package"
+    "package": "pnpm vsce package",
+    "prepublish": "pnpm run compile -- --production",
+    "publish": "pnpm vsce publish",
+    "release:patch": "npm version patch && pnpm run publish && git push && git push --tags",
+    "release:minor": "npm version minor && pnpm run publish && git push && git push --tags",
+    "release:major": "npm version major && pnpm run publish && git push && git push --tags"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.5",
