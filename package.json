@@ -13,6 +13,7 @@
     "name": "Chris Cook",
     "url": "https://zirkelc.dev"
   },
+  "icon": "./assets/icon.png",
   "engines": {
     "vscode": "^1.93.0"
   },

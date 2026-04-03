@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Folder body -->
+  <rect x="8" y="36" width="112" height="80" rx="8" fill="#2B7A78"/>
+  <!-- Folder tab -->
+  <path d="M8 44V30a8 8 0 0 1 8-8h28l12 14H112a8 8 0 0 1 8 8v0H8Z" fill="#3AAFA9"/>
+  <!-- Terminal prompt -->
+  <path d="M36 64l16 14-16 14" stroke="#DEF2F1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="60" y1="92" x2="92" y2="92" stroke="#DEF2F1" stroke-width="6" stroke-linecap="round"/>
+</svg>
